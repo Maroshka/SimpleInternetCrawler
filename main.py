@@ -31,31 +31,20 @@ def crawl(initUrl):
 	links = getExternalLinks(bs, domain)
 	if len(links) == 0:
 		links = getInternalLinks(bs, domain)
-		if len(links) != 0:
-			golink = links[random.randint(0, len(links)-1)]
-			print golink
-			try:
-				crawl(golink) 
-			except:
-				golink = links[random.randint(0, len(links)-1)]
-				print golink
-				crawl(golink) 
-		else:
+		if len(links) ==0 :
 			print "Think youre funny, ha?"
-
-
-	else:
+			return None
+		
+	golink = links[random.randint(0, len(links)-1)]
+	print golink
+	try:
+		crawl(golink) 
+	except:
 		golink = links[random.randint(0, len(links)-1)]
 		print golink
-		try:
-			crawl(golink) 
-		except:
-			golink = links[random.randint(0, len(links)-1)]
-			print golink
-			crawl(golink) 
+		crawl(golink) 
 
 
 if __name__ == '__main__':
 	crawl("http://oreilly.com")
 	
-
